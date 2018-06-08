@@ -130,3 +130,9 @@ body {
 
 }
 
+#restart {
+    position: relative;
+    width: 960;
+    text-align: center;
+    top: 100px;
+}

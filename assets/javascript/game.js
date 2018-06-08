@@ -8,32 +8,32 @@ var fighter = {
         type: "Earthbender",
         superpower: "",
         hp: 100,
-        ap: 35,
-        ca: 20,
+        ap: 8,
+        cap: 15,
     },
     firebender: {
         name: "Zuko",
         type: "Firebender",
         superpower: "",
-        hp: 120,
-        ap: 30,
-        ca: 15,
+        hp: 150,
+        ap: 6,
+        cap: 15,
     },
     waterbender: {
         name: "Katara",
         type: "Waterbender",
         superpower: "",
-        hp: 130,
-        ap: 25,
-        ca: 12,
+        hp: 180,
+        ap: 6,
+        cap: 5,
     },
     airbender: {
         name: "Aang",
         type: "Airbender",
         superpower: "Avatar",
-        hp: 125,
-        ap: 20,
-        ca: 25,
+        hp: 120,
+        ap: 6,
+        cap: 5,
     },
 
 }
@@ -44,6 +44,7 @@ var firstSelection = false;
 var secondSelection = false;
 var gameStart = false;
 
+$("#main-body > h2").css("visibility", "hidden")
 $("#start-text").text("Select enemy fighter!");
 
 
@@ -61,6 +62,7 @@ $("#start-text").text("Select enemy fighter!");
             $("#button-fight").css("height", "50px");
             $("#button-fight").css("width", "100px");
             $("#button-fight").css("font-size", "15px");
+            $("#main-body > h2").css("visibility", "visible")
             gameStart = true;
             console.log(gameStart);
        
@@ -104,19 +106,30 @@ $("#start-text").text("Select enemy fighter!");
    
     $("#start-text").on("click", function() {
         if (gameStart == true) {
+            
             computerFighter.hp = (computerFighter.hp - yourFighter.ap);
-            yourFighter.hp = (yourFighter.hp - computerFighter.ca);
-            yourFighter.ap = yourFighter.ap + 5;
+            yourFighter.hp = (yourFighter.hp - computerFighter.cap);
+            yourFighter.ap = yourFighter.ap + 6;
             $(".yourHP").text("hp: " + yourFighter.hp);
             $(".computerHP").text("chp: " + computerFighter.hp);
 
             if(computerFighter.hp <= 0) {
-                $("#computerFighter").remove();
+                $("#computerFighter > .box").remove();
+                computerFighter = {};
                 gameStart = false;
                 secondSelection = false;
+                $("#start-text").text("Select enemy fighter!");
+
+            }
+            if(yourFighter.hp <= 0) {
+                $("#yourFighter").fadeOut();
+                $("#start-text").text("You have been defeated!");
+
             }
           
         }
     })
-    
+    $('#restart').click(function() {
+        location.reload();
+    });
 });
