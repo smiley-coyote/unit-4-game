@@ -132,7 +132,17 @@ body {
 
 #restart {
     position: relative;
-    width: 960;
     text-align: center;
     top: 100px;
+}
+
+#stats-you {
+    position: relative;
+    text-align: center;
+    top: 70px;
+}
+#stats-computer {
+    position: relative;
+    text-align: center;
+    top: 75px;
 }

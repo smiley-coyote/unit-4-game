@@ -8,7 +8,7 @@ var fighter = {
         type: "Earthbender",
         superpower: "",
         hp: 100,
-        ap: 8,
+        ap: 6,
         cap: 15,
     },
     firebender: {
@@ -25,7 +25,7 @@ var fighter = {
         superpower: "",
         hp: 180,
         ap: 6,
-        cap: 5,
+        cap: 15,
     },
     airbender: {
         name: "Aang",
@@ -33,7 +33,7 @@ var fighter = {
         superpower: "Avatar",
         hp: 120,
         ap: 6,
-        cap: 5,
+        cap: 15,
     },
 
 }
@@ -43,9 +43,10 @@ var computerFighter = {};
 var firstSelection = false;
 var secondSelection = false;
 var gameStart = false;
+counter = 3;
 
 $("#main-body > h2").css("visibility", "hidden")
-$("#start-text").text("Select enemy fighter!");
+$("#start-text").text("Select your fighter!");
 
 
 
@@ -55,6 +56,7 @@ $("#start-text").text("Select enemy fighter!");
             firstSelection = true 
             $(this).appendTo("#yourFighter");
             $("#yourFighter p:last").addClass("yourHP")
+            $("#start-text").text("Select enemy fighter!");
         } else if (firstSelection && secondSelection == false && gameStart == false)   {
             $(this).appendTo("#computerFighter")
             $("#computerFighter p:last").addClass("computerHP");
@@ -106,10 +108,48 @@ $("#start-text").text("Select enemy fighter!");
    
     $("#start-text").on("click", function() {
         if (gameStart == true) {
-            
-            computerFighter.hp = (computerFighter.hp - yourFighter.ap);
-            yourFighter.hp = (yourFighter.hp - computerFighter.cap);
-            yourFighter.ap = yourFighter.ap + 6;
+            // air 
+            if (yourFighter == fighter.airbender) {
+                // vs water
+                if (computerFighter == fighter.waterbender) {
+                    computerFighter.hp = (computerFighter.hp - (yourFighter.ap + 5));
+                    yourFighter.ap = yourFighter.ap + 6;
+                    $("#stats-you").text("Aang attacked Katara with " + yourFighter.ap + " ap!")
+                    var i = Math.floor(Math.random() * 3);
+                    console.log(i);
+                    if (i < 2) {
+                    yourFighter.hp = (yourFighter.hp - (computerFighter.cap-5));
+                    $("#stats-computer").text("Katara counter-attacked with " + (computerFighter.cap-5) + " ap!")
+                    } else {
+                        $("#stats-computer").text("Katara's counter-attack missed!")
+                    }
+                }
+                // vs fire
+                if (computerFighter == fighter.firebender) {
+                    computerFighter.hp = (computerFighter.hp - (yourFighter.ap + 5));
+                    yourFighter.hp = (yourFighter.hp - (computerFighter.cap+3));
+                    yourFighter.ap = yourFighter.ap + 6;
+                }
+                // vs earth
+                if (computerFighter == fighter.earthbender) {
+                    computerFighter.hp = (computerFighter.hp - (yourFighter.ap - 5));
+                    yourFighter.hp = (yourFighter.hp - computerFighter.cap);
+                    yourFighter.ap = yourFighter.ap + 6;
+                }
+                
+            }
+            // air vs fire
+            // air vs earth
+            // water vs fire
+            // water vs earth
+            // water vs air
+            // fire vs earth
+            // fire vs air
+            // fire vs water
+            // earth vs air
+            // earth vs water
+            // earth vs fire
+           
             $(".yourHP").text("hp: " + yourFighter.hp);
             $(".computerHP").text("chp: " + computerFighter.hp);
 
@@ -119,12 +159,15 @@ $("#start-text").text("Select enemy fighter!");
                 gameStart = false;
                 secondSelection = false;
                 $("#start-text").text("Select enemy fighter!");
-
+                counter--;
             }
             if(yourFighter.hp <= 0) {
                 $("#yourFighter").fadeOut();
                 $("#start-text").text("You have been defeated!");
 
+            }
+            if(counter == 0) {
+                $("#start-text").text("You win!");
             }
           
         }
@@ -133,3 +176,7 @@ $("#start-text").text("Select enemy fighter!");
         location.reload();
     });
 });
+
+computerFighter.hp = (computerFighter.hp - yourFighter.ap);
+yourFighter.hp = (yourFighter.hp - computerFighter.cap);
+yourFighter.ap = yourFighter.ap + 6;
