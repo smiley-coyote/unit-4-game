@@ -15,19 +15,33 @@
         <div class="title"><h1>RPG GAME</h1></div>
     </div>
     <div id="main-body">
+            <h2>VS</h2>
         <div class="section1">
             <div id="yourFighter"></div>
-            <div id="info-box"><h1 id="start-text">Choose your fighter!</h1></div>
             
-            <div id="fight-select"></div>
+            <div id="computerFighter"></div>
+            
         </div>
         <div class="section2">
-            <div class="box" id="box-aang"><img id="aang" src="assets/images/aang.png" /></div>
-            <div class="box" id="box-katara"><img id="katara" src="assets/images/katara.png" /></div>
-            <div class="box" id="box-toph"><img id="toph" src="assets/images/toph.png" /></div>
-            <div class="box" id="box-zuko"><img id="zuko" src="assets/images/zuko.png" /></div>
+            
+            <div class="box">
+                <button onclick="fighterFunction(1)" id="button">
+                    <h3>Aang</h3> type: Airbender
+                    <img id="aang" src="assets/images/aang.png" />
+                    <p>hp: 125</p>
+                </button>
+            </div>
+            <div class="box" id="box-katara">
+                <button onclick="fighterFunction(2)" id="button-kat">
+                <h3>Katara</h3> type: Waterbender
+                <img id="katara" src="assets/images/katara.png" />
+                <p>hp: 130</p></button></div>
+            <div class="box" id="box-toph"><button onclick="fighterFunction(3)" id="button-toph"><h3>Toph</h3> type: Earthbender<img id="toph" src="assets/images/toph.png" /><p>hp: 100</p></button></div>
+            <div class="box" id="box-zuko"><button onclick="fighterFunction(4)" id="button-zuko"><h3>Zuko</h3> type: Firebender<img id="zuko" src="assets/images/zuko.png" /><p>hp: 120</p></button></div>
         </div>
-        <div class="section3"><div id="computerFighter"></div>
+        <div class="section3">
+                <div id="info-box"><h1 id="start-text">Choose your fighter!</h1></div>
+                
     </div>
 
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

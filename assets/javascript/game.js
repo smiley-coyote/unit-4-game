@@ -1,10 +1,4 @@
-// create an object that'll hold each fighter with their name, hp, ap, and cap.
-// create variables to house the fighters
-// create buttons and div sections on the html page for your fighter, fighters coming up and current enemy
-// create a random selector to place four of the fighters into the selection bay
-// create on click events for each fighter. the first being your fighter
-// create a function that determines what each attack does
-// create a win and lose function
+$(document).ready(function() {
 
 
 var fighter = {
@@ -48,37 +42,27 @@ var yourFighter = {};
 var computerFighter = {};
 var firstSelection = false;
 var secondSelection = false;
+var gameStart = false;
+
+$("#start-text").text("Select enemy fighter!");
 
 
-
-
-// var randomNumber = Math.floor(Math.random() * (300 - 100 + 1) ) + 100;
-
-$(document).ready(function() {
-// Get each fighter ready
-// aang 
-$("#box-aang").prepend(fighter.airbender.name + "<p>" + "type: " + fighter.airbender.type)
-$("#box-aang").append(fighter.airbender.hp)
-// katara
-$("#box-katara").prepend(fighter.waterbender.name + "<p>" + "type: " + fighter.waterbender.type)
-$("#box-katara").append(fighter.waterbender.hp)
-// toph
-$("#box-toph").prepend(fighter.earthbender.name + "<p>" + "type: " + fighter.earthbender.type)
-$("#box-toph").append(fighter.earthbender.hp)
-// zuko
-$("#box-zuko").prepend(fighter.firebender.name + "<p>" + "type: " + fighter.firebender.type)
-$("#box-zuko").append(fighter.firebender.hp)
 
     $(".box").on("click", function() {
-        $("#start-text").text("Select enemy fighter!");
-        if (firstSelection == false) {
+        
+        if (firstSelection == false && gameStart == false) {
             firstSelection = true 
-            yourFighter = $(this);
-            
             $(this).appendTo("#yourFighter");
-        } else if (firstSelection | secondSelection == false)   {
-            computerFighter = $(this);
+            $("#yourFighter p:last").addClass("yourHP")
+        } else if (firstSelection && secondSelection == false && gameStart == false)   {
             $(this).appendTo("#computerFighter")
+            $("#computerFighter p:last").addClass("computerHP");
+            $("#start-text").html("<button id='button-fight'>Fight!</button>")
+            $("#button-fight").css("height", "50px");
+            $("#button-fight").css("width", "100px");
+            $("#button-fight").css("font-size", "15px");
+            gameStart = true;
+            console.log(gameStart);
        
         } 
     })
@@ -87,5 +71,52 @@ $("#box-zuko").append(fighter.firebender.hp)
         console.log(computerFighter);
     })
 
+   fighterFunction = function(x){
+       if (x == 1 && firstSelection == false) {
+           yourFighter = fighter.airbender;
+           console.log(yourFighter);
+       } if (x == 2 && firstSelection == false) {
+           yourFighter = fighter.waterbender;
+           console.log(yourFighter);
+       } if (x == 3 && firstSelection == false) {
+            yourFighter = fighter.earthbender;
+            console.log(yourFighter);
+        } if (x == 4 && firstSelection == false) {
+            yourFighter = fighter.firebender;
+            console.log(yourFighter);
+        } else if (x == 1 && firstSelection) {
+            computerFighter = fighter.airbender;
+            console.log(computerFighter);
+        } else if (x == 2 && firstSelection) {
+            computerFighter = fighter.waterbender;
+            console.log(computerFighter);
+        } else if (x == 3 && firstSelection) {
+            computerFighter = fighter.earthbender;
+            console.log(computerFighter);
+        } else if (x == 4 && firstSelection) {
+            computerFighter = fighter.firebender;
+            console.log(computerFighter);
+        } 
+
+    }
+
+    // create a function that works with onClick if gameStart == true
+   
+    $("#start-text").on("click", function() {
+        if (gameStart == true) {
+            computerFighter.hp = (computerFighter.hp - yourFighter.ap);
+            yourFighter.hp = (yourFighter.hp - computerFighter.ca);
+            yourFighter.ap = yourFighter.ap + 5;
+            $(".yourHP").text("hp: " + yourFighter.hp);
+            $(".computerHP").text("chp: " + computerFighter.hp);
+
+            if(computerFighter.hp <= 0) {
+                $("#computerFighter").remove();
+                gameStart = false;
+                secondSelection = false;
+            }
+          
+        }
+    })
     
 });
