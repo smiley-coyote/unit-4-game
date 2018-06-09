@@ -46,11 +46,14 @@ var gameStart = false;
 counter = 3;
 var images = ["assets/images/air.gif", "assets/images/earth.gif", "assets/images/fire.gif", "assets/images/water.gif", 
 "assets/images/aang1.gif", "assets/images/katara1.gif", "assets/images/zuko1.gif", "assets/images/toph1.gif"];
+// for special moves
 var symbols = ["assets/images/symbol_earth.jpg", "assets/images/symbol_fire.jpg", "assets/images/symbol_water.jpg", 
 "assets/images/symbol_wind.jpg"]
 var leftBox = "";
 var rightBox = "";
 var specialMove = false;
+var symbolGame = false;
+var numberOptions = [10, 5, 3, 7];
 
 
 $("#main-body > h2").css("visibility", "hidden")
@@ -399,68 +402,100 @@ $("#restart").css("visibility", "hidden");
     })
     // special moves **************************************************************************************
     $("#special-move").on("click", function() {
+        // aang special move
         if (yourFighter == fighter.airbender) {
-            $("#special-move").html("");
-            for(i=0; i<4; i++){
-                var symbolz = symbols[i];
-                $("#special-move").append("<img src= " + symbolz + " width='50px'/>")
-            }
-            
-            if (specialMove) {
             var gif = images[4];
             $("#your-screen").html("<img src=" + gif + " />")
             setTimeout(specialMove, 3000);
-            }
+            $("#special-move").remove();
+            
         }
          // Katara special move
          if (yourFighter == fighter.waterbender) {
             var gif = images[5];
             $("#your-screen").html("<img src=" + gif + " />")
             setTimeout(specialMove, 4310);
+            $("#special-move").remove();
         }
         // Zuko special move
         if (yourFighter == fighter.firebender) {
             var gif = images[6];
             $("#your-screen").html("<img src=" + gif + " />")
             setTimeout(specialMove, 1945);
+            $("#special-move").remove();
         }
         // Toph special move
         if (yourFighter == fighter.earthbender) {
             var gif = images[7];
             $("#your-screen").html("<img src=" + gif + " />")
             setTimeout(specialMove, 1250);
+            $("#special-move").remove();
         }
+        function specialMove() {
+            // Aang special move
+            if (yourFighter == fighter.airbender) {
+                computerFighter.hp = computerFighter.hp - 50;
+                $("#stats-you").text("Aang used his Avatar special abilities against " + computerFighter.name + " and attacked with 50hp!")
+                $(".computerHP").text("hp: " + computerFighter.hp);
+                $("#your-screen").html("");
+                if(computerFighter.hp <= 0) {
+                    $("#computerFighter > .box").remove();
+                    computerFighter = {};
+                    gameStart = false;
+                    secondSelection = false;
+                    $("#start-text").text("Select enemy fighter!");
+                    counter--;
+                }
+            }
+            // Katara special move
+            if (yourFighter == fighter.waterbender) {
+                computerFighter.hp = computerFighter.hp - 50;
+                $("#stats-you").text("Katara used her Avatar special abilities against " + computerFighter.name + " and attacked with 50hp!")
+                $(".computerHP").text("hp: " + computerFighter.hp);
+                $("#your-screen").html("");
+                if(computerFighter.hp <= 0) {
+                    $("#computerFighter > .box").remove();
+                    computerFighter = {};
+                    gameStart = false;
+                    secondSelection = false;
+                    $("#start-text").text("Select enemy fighter!");
+                    counter--;
+                }
+            }
+            // Zuko special move
+            if (yourFighter == fighter.firebender) {
+                computerFighter.hp = computerFighter.hp - 50;
+                $("#stats-you").text("Zuko used his Avatar special abilities against " + computerFighter.name + " and attacked with 50hp!")
+                $(".computerHP").text("hp: " + computerFighter.hp);
+                $("#your-screen").html("");
+                if(computerFighter.hp <= 0) {
+                    $("#computerFighter > .box").remove();
+                    computerFighter = {};
+                    gameStart = false;
+                    secondSelection = false;
+                    $("#start-text").text("Select enemy fighter!");
+                    counter--;
+                }
+            }
+            // Toph special move
+            if (yourFighter == fighter.earthbender) {
+                computerFighter.hp = computerFighter.hp - 50;
+                $("#stats-you").text("Toph used her Avatar special abilities against " + computerFighter.name + " and attacked with 50hp!")
+                $(".computerHP").text("hp: " + computerFighter.hp);
+                $("#your-screen").html("");
+                if(computerFighter.hp <= 0) {
+                    $("#computerFighter > .box").remove();
+                    computerFighter = {};
+                    gameStart = false;
+                    secondSelection = false;
+                    $("#start-text").text("Select enemy fighter!");
+                    counter--;
+                }
+            }
+        }
+    
     })
-    function specialMove() {
-        // Aang special move
-        if (yourFighter == fighter.airbender) {
-            computerFighter.hp = computerFighter.hp - 50;
-            $("#stats-you").text("Aang used his Avatar special abilities against " + computerFighter.name + " and attacked with 50hp!")
-            $(".computerHP").text("hp: " + computerFighter.hp);
-            $("#your-screen").html("");
-        }
-        // Katara special move
-        if (yourFighter == fighter.waterbender) {
-            computerFighter.hp = computerFighter.hp - 50;
-            $("#stats-you").text("Katara used her Avatar special abilities against " + computerFighter.name + " and attacked with 50hp!")
-            $(".computerHP").text("hp: " + computerFighter.hp);
-            $("#your-screen").html("");
-        }
-        // Zuko special move
-        if (yourFighter == fighter.firebender) {
-            computerFighter.hp = computerFighter.hp - 50;
-            $("#stats-you").text("Zuko used his Avatar special abilities against " + computerFighter.name + " and attacked with 50hp!")
-            $(".computerHP").text("hp: " + computerFighter.hp);
-            $("#your-screen").html("");
-        }
-        // Toph special move
-        if (yourFighter == fighter.earthbender) {
-            computerFighter.hp = computerFighter.hp - 50;
-            $("#stats-you").text("Toph used her Avatar special abilities against " + computerFighter.name + " and attacked with 50hp!")
-            $(".computerHP").text("hp: " + computerFighter.hp);
-            $("#your-screen").html("");
-        }
-    }
+    
 
     // reset game button /////////////////////////////////////////////////////////////////////////////////////////////
     $('#restart').click(function() {
@@ -468,3 +503,10 @@ $("#restart").css("visibility", "hidden");
     });
 });
 
+// for special move mini game
+/*  for(i=0; i<4; i++){
+    var symbolz = symbols[i];
+    var numberz = Math.floor(Math.random() * (10 - 3)) + 3;
+    
+    $("#special-move").append("<img src= " + symbolz + " width='50px'/>")
+*/
