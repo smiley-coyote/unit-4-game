@@ -7,7 +7,7 @@ var fighter = {
         name: "Toph",
         type: "Earthbender",
         superpower: "",
-        hp: 100,
+        hp: 110,
         ap: 6,
         cap: 15,
     },
