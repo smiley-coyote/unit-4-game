@@ -44,12 +44,22 @@ var firstSelection = false;
 var secondSelection = false;
 var gameStart = false;
 counter = 3;
+var images = ["assets/images/air.gif", "assets/images/earth.gif", "assets/images/fire.gif", "assets/images/water.gif", 
+"assets/images/aang1.gif", "assets/images/katara1.gif", "assets/images/zuko1.gif", "assets/images/toph1.gif"];
+var symbols = ["assets/images/symbol_earth.jpg", "assets/images/symbol_fire.jpg", "assets/images/symbol_water.jpg", 
+"assets/images/symbol_wind.jpg"]
+var leftBox = "";
+var rightBox = "";
+var specialMove = false;
+
 
 $("#main-body > h2").css("visibility", "hidden")
 $("#start-text").text("Select your fighter!");
+$("#special-move").css("visibility", "hidden");
+$("#restart").css("visibility", "hidden");
 
 
-
+    // Select your fighter ========================================
     $(".box").on("click", function() {
         
         if (firstSelection == false && gameStart == false) {
@@ -65,6 +75,7 @@ $("#start-text").text("Select your fighter!");
             $("#button-fight").css("width", "100px");
             $("#button-fight").css("font-size", "15px");
             $("#main-body > h2").css("visibility", "visible")
+            $("#special-move").css("visibility", "visible");
             gameStart = true;
             console.log(gameStart);
        
@@ -76,30 +87,46 @@ $("#start-text").text("Select your fighter!");
     })
 
    fighterFunction = function(x){
+    //if Aang is selected first ++++++++++++++++++++++++++++++++
        if (x == 1 && firstSelection == false) {
            yourFighter = fighter.airbender;
-           console.log(yourFighter);
+           leftBox = images[0];
+           $("#left-box").html("<img src=" + leftBox + " />");
+    //if Katara is selected first ++++++++++++++++++++++++++++++
        } if (x == 2 && firstSelection == false) {
            yourFighter = fighter.waterbender;
-           console.log(yourFighter);
+           leftBox = images[3];
+           $("#left-box").html("<img src=" + leftBox + " />");
+    //if Toph is selected first ++++++++++++++++++++++++++++++++
        } if (x == 3 && firstSelection == false) {
             yourFighter = fighter.earthbender;
-            console.log(yourFighter);
+            leftBox = images[1];
+           $("#left-box").html("<img src=" + leftBox + " />");
+    //if Zuko is selected first ++++++++++++++++++++++++++++++++
         } if (x == 4 && firstSelection == false) {
             yourFighter = fighter.firebender;
-            console.log(yourFighter);
+            leftBox = images[2];
+           $("#left-box").html("<img src=" + leftBox + " />");
+    //if Aang is selected second -------------------------------
         } else if (x == 1 && firstSelection) {
             computerFighter = fighter.airbender;
-            console.log(computerFighter);
+            rightBox = images[0];
+           $("#right-box").html("<img src=" + rightBox + " />");
+    //if Katara is selected second -------------------------------
         } else if (x == 2 && firstSelection) {
             computerFighter = fighter.waterbender;
-            console.log(computerFighter);
+            rightBox = images[3];
+           $("#right-box").html("<img src=" + rightBox + " />");
+    //if Toph is selected second -------------------------------
         } else if (x == 3 && firstSelection) {
             computerFighter = fighter.earthbender;
-            console.log(computerFighter);
+            rightBox = images[1];
+           $("#right-box").html("<img src=" + rightBox + " />");
+    //if Zuko is selected second -------------------------------
         } else if (x == 4 && firstSelection) {
             computerFighter = fighter.firebender;
-            console.log(computerFighter);
+            rightBox = images[2];
+           $("#right-box").html("<img src=" + rightBox + " />");
         } 
 
     }
@@ -110,7 +137,7 @@ $("#start-text").text("Select your fighter!");
         if (gameStart == true) {
             // if you're Aang (air) ===================================================================================
             if (yourFighter == fighter.airbender) {
-                // vs Katara (water)
+                // vs Katara (water)+++++++++++++++++++++++++++++++++++++++++++
                 if (computerFighter == fighter.waterbender) {
                     var j = Math.floor(Math.random() * 6);
                     var i = Math.floor(Math.random() * 5);
@@ -128,7 +155,7 @@ $("#start-text").text("Select your fighter!");
                         $("#stats-computer").text("Katara's counter-attack missed!")
                     }
                 }
-                // vs Zuko (fire)
+                // vs Zuko (fire)+++++++++++++++++++++++++++++++++++++++++++
                 if (computerFighter == fighter.firebender) {
                     var j = Math.floor(Math.random() * 6);
                     var i = Math.floor(Math.random() * 5);
@@ -146,7 +173,7 @@ $("#start-text").text("Select your fighter!");
                         $("#stats-computer").text("Zuko's counter-attack missed!")
                     }
                 }
-                // vs Toph (earth)
+                // vs Toph (earth)+++++++++++++++++++++++++++++++++++++++++++
                 if (computerFighter == fighter.earthbender) {
                     var j = Math.floor(Math.random() * 6);
                     var i = Math.floor(Math.random() * 5);
@@ -340,12 +367,11 @@ $("#start-text").text("Select your fighter!");
                 }
                 
             }
-            
-     
-            // win/lose conditions
-           
             $(".yourHP").text("hp: " + yourFighter.hp);
-            $(".computerHP").text("chp: " + computerFighter.hp);
+            $(".computerHP").text("hp: " + computerFighter.hp);
+            // win/lose conditions \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+           
+       
 
             if(computerFighter.hp <= 0) {
                 $("#computerFighter > .box").remove();
@@ -355,23 +381,90 @@ $("#start-text").text("Select your fighter!");
                 $("#start-text").text("Select enemy fighter!");
                 counter--;
             }
+            // lose ++++++++++++++++++++++++++++++++++++++++++++++
             if(yourFighter.hp <= 0) {
                 $("#yourFighter").fadeOut();
                 $("#start-text").text("You have been defeated!");
-
+                $("#restart").css("visibility", "visible");
+                $("#special-move").css("visibility", "hidden");
             }
+            // win ++++++++++++++++++++++++++++++++++++++++++++++
             if(counter == 0) {
                 $("#start-text").text("You win!");
+                $("#restart").css("visibility", "visible");
+                $("#special-move").css("visibility", "hidden");
             }
           
         }
     })
-    // reset game button
+    // special moves **************************************************************************************
+    $("#special-move").on("click", function() {
+        if (yourFighter == fighter.airbender) {
+            $("#special-move").html("");
+            for(i=0; i<4; i++){
+                var symbolz = symbols[i];
+                $("#special-move").append("<img src= " + symbolz + " width='50px'/>")
+            }
+            
+            if (specialMove) {
+            var gif = images[4];
+            $("#your-screen").html("<img src=" + gif + " />")
+            setTimeout(specialMove, 3000);
+            }
+        }
+         // Katara special move
+         if (yourFighter == fighter.waterbender) {
+            var gif = images[5];
+            $("#your-screen").html("<img src=" + gif + " />")
+            setTimeout(specialMove, 4310);
+        }
+        // Zuko special move
+        if (yourFighter == fighter.firebender) {
+            var gif = images[6];
+            $("#your-screen").html("<img src=" + gif + " />")
+            setTimeout(specialMove, 1945);
+        }
+        // Toph special move
+        if (yourFighter == fighter.earthbender) {
+            var gif = images[7];
+            $("#your-screen").html("<img src=" + gif + " />")
+            setTimeout(specialMove, 1250);
+        }
+    })
+    function specialMove() {
+        // Aang special move
+        if (yourFighter == fighter.airbender) {
+            computerFighter.hp = computerFighter.hp - 50;
+            $("#stats-you").text("Aang used his Avatar special abilities against " + computerFighter.name + " and attacked with 50hp!")
+            $(".computerHP").text("hp: " + computerFighter.hp);
+            $("#your-screen").html("");
+        }
+        // Katara special move
+        if (yourFighter == fighter.waterbender) {
+            computerFighter.hp = computerFighter.hp - 50;
+            $("#stats-you").text("Katara used her Avatar special abilities against " + computerFighter.name + " and attacked with 50hp!")
+            $(".computerHP").text("hp: " + computerFighter.hp);
+            $("#your-screen").html("");
+        }
+        // Zuko special move
+        if (yourFighter == fighter.firebender) {
+            computerFighter.hp = computerFighter.hp - 50;
+            $("#stats-you").text("Zuko used his Avatar special abilities against " + computerFighter.name + " and attacked with 50hp!")
+            $(".computerHP").text("hp: " + computerFighter.hp);
+            $("#your-screen").html("");
+        }
+        // Toph special move
+        if (yourFighter == fighter.earthbender) {
+            computerFighter.hp = computerFighter.hp - 50;
+            $("#stats-you").text("Toph used her Avatar special abilities against " + computerFighter.name + " and attacked with 50hp!")
+            $(".computerHP").text("hp: " + computerFighter.hp);
+            $("#your-screen").html("");
+        }
+    }
+
+    // reset game button /////////////////////////////////////////////////////////////////////////////////////////////
     $('#restart').click(function() {
         location.reload();
     });
 });
 
-computerFighter.hp = (computerFighter.hp - yourFighter.ap);
-yourFighter.hp = (yourFighter.hp - computerFighter.cap);
-yourFighter.ap = yourFighter.ap + 6;

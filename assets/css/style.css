@@ -28,8 +28,8 @@ body {
 #main-body{
     width: 960px;
     margin: 0 auto;
-    background: purple;
     height: 600px;
+    color: white;
 }
 
 #main-body h2 {
@@ -45,7 +45,6 @@ body {
 .section1 {
     width: 100%;
     height: 33.3%;
-    background: white;
     
 }
 
@@ -58,8 +57,6 @@ body {
 .section2 {
     width: 100%;
     height: 33.3%;
-    
-    background: white;
     text-align: center;
 }
 
@@ -78,7 +75,6 @@ body {
 .section3 {
     width: 100%;
     height: 33.3%;
-    background: white;
     
     
 }
@@ -116,7 +112,7 @@ body {
 #info-box {
     display: inline-block;
     width: 960px;
-  
+    color: white;
     position: absolute;
     text-align: center;
 }
@@ -133,16 +129,106 @@ body {
 #restart {
     position: relative;
     text-align: center;
-    top: 100px;
+    top: 150px;
+  
+}
+#restart button {
+    height: auto;
+    width: auto;
+    font-size: 1em;
 }
 
 #stats-you {
-    position: relative;
-    text-align: center;
-    top: 70px;
+    position: absolute;
+    margin-left: 380px;
+    margin-top: 60px;
+ 
 }
 #stats-computer {
-    position: relative;
-    text-align: center;
-    top: 75px;
+    position: absolute;
+    margin-left: 380px;
+    margin-top: 80px;
+ 
 }
+
+#left-box{
+  height: 100px;
+  width: 100px;
+  position: relative;
+  float: left;
+  top: 50px;
+  left: 100px;
+}
+#right-box{
+    height: 100px;
+    width: 100px;
+    position: relative;
+    float: right;
+    top: 50px;
+    right: 100px;
+  }
+
+#your-screen {
+    height: 100px;
+    width: 100px;
+    position: relative;
+    float: left;
+    top: 50px;
+    left: 100px;
+}
+#computer-screen{
+    height: 100px;
+    width: 100px;
+    position: relative;
+    float: right;
+    top: 50px;
+    right: 100px;
+}
+
+  #special-move{
+      position: absolute;
+      margin-left: 425px;
+      margin-top: 100px;
+      
+  }
+  #special-move button {
+      font-size: 1em;
+      animation-name: textColor;
+        animation-duration: 60s;
+  }
+
+  #special-move img {
+      position: relative;
+      bottom: 25px;
+      right: 95px;
+      height: 75px;
+      width: 75px;
+      
+  }
+
+  @keyframes textColor {
+    0%  {color: red;}
+    5%  {color:orange;}
+    10% {color: blue;}
+    15% {color: green;}
+    20% {color: red;}
+    25%{color: orange;}
+    30%{color: blue;}
+    35%{color: green;}
+    40%{color: red;}
+    45%{color: orange;}
+    50%{color: blue;}
+    55%{color: green;}
+    60%{color: red;}
+    65%{color: orange;}
+    70%{color: blue;}
+    75%{color: green;}
+    80%{color: red;}
+    85%{color: orange;}
+    90%{color: blue;}
+    95%{color: green;}
+    100%{color: red;}
+
+    
+}
+
