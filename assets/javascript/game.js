@@ -159,7 +159,7 @@ $("#special-move-ready").css("visibility", "hidden");
                         $("#stats-you").text("Aang attacked Katara with " + yourFighter.ap + " ap!")
                     } else {
                         $("#stats-you").text("Aang's attack missed!");
-                    }if (i == 5 && computerMove) {
+                    }if (i == 5 && computerMove && (computerFighter.hp > 20)) {
                         $("#stats-computer").text(computerFighter.name + " is using their special ability!");
                         computerSpecial(3);
                         computerMove = false;
@@ -182,7 +182,7 @@ $("#special-move-ready").css("visibility", "hidden");
                         $("#stats-you").text("Aang attacked Zuko with " + yourFighter.ap + " ap!")
                     } else {
                         $("#stats-you").text("Aang's attack missed!");
-                    }if (i == 5 && computerMove) {
+                    }if (i == 5 && computerMove && (computerFighter.hp > 20)) {
                         $("#stats-computer").text(computerFighter.name + " is using their special ability!");
                         computerSpecial(4);
                         computerMove = false;
@@ -205,7 +205,7 @@ $("#special-move-ready").css("visibility", "hidden");
                         $("#stats-you").text("Aang attacked Toph with " + yourFighter.ap + " ap!")
                     } else {
                         $("#stats-you").text("Aang's attack missed!");
-                    }if (i == 5 && computerMove) {
+                    }if (i == 5 && computerMove && (computerFighter.hp > 20)) {
                         $("#stats-computer").text(computerFighter.name + " is using their special ability!");
                         computerSpecial(1);
                         computerMove = false;
@@ -232,7 +232,7 @@ $("#special-move-ready").css("visibility", "hidden");
                         $("#stats-you").text("Katara attacked Zuko with " + yourFighter.ap + " ap!")
                     } else {
                         $("#stats-you").text("Katara's attack missed!");
-                    }if (i == 5 && computerMove) {
+                    }if (i == 5 && computerMove && (computerFighter.hp > 20)) {
                         $("#stats-computer").text(computerFighter.name + " is using their special ability!");
                         computerSpecial(4);
                         computerMove = false;
@@ -255,7 +255,7 @@ $("#special-move-ready").css("visibility", "hidden");
                         $("#stats-you").text("Katara attacked Toph with " + yourFighter.ap + " ap!")
                     } else {
                         $("#stats-you").text("Katara's attack missed!");
-                    }if (i == 5 && computerMove) {
+                    }if (i == 5 && computerMove && (computerFighter.hp > 20)) {
                         $("#stats-computer").text(computerFighter.name + " is using their special ability!");
                         computerSpecial(1);
                         computerMove = false;
@@ -278,7 +278,7 @@ $("#special-move-ready").css("visibility", "hidden");
                         $("#stats-you").text("Katara attacked Aang with " + yourFighter.ap + " ap!")
                     } else {
                         $("#stats-you").text("Katara's attack missed!");
-                    }if (i == 5 && computerMove) {
+                    }if (i == 5 && computerMove && (computerFighter.hp > 20)) {
                         $("#stats-computer").text(computerFighter.name + " is using their special ability!");
                         computerSpecial(2);
                         computerMove = false;
@@ -305,7 +305,7 @@ $("#special-move-ready").css("visibility", "hidden");
                         $("#stats-you").text("Zuko attacked Toph with " + yourFighter.ap + " ap!")
                     } else {
                         $("#stats-you").text("Zuko's attack missed!");
-                    }if (i == 5 && computerMove) {
+                    }if (i == 5 && computerMove && (computerFighter.hp > 20)) {
                         $("#stats-computer").text(computerFighter.name + " is using their special ability!");
                         computerSpecial(1);
                         computerMove = false;
@@ -328,7 +328,7 @@ $("#special-move-ready").css("visibility", "hidden");
                         $("#stats-you").text("Zuko attacked Aang with " + yourFighter.ap + " ap!")
                     } else {
                         $("#stats-you").text("Zuko's attack missed!");
-                    }if (i == 5 && computerMove) {
+                    }if (i == 5 && computerMove && (computerFighter.hp > 20)) {
                         $("#stats-computer").text(computerFighter.name + " is using their special ability!");
                         computerSpecial(2);
                         computerMove = false;
@@ -351,7 +351,7 @@ $("#special-move-ready").css("visibility", "hidden");
                         $("#stats-you").text("Zuko attacked Katara with " + yourFighter.ap + " ap!")
                     } else {
                         $("#stats-you").text("Zuko's attack missed!");
-                    }if (i == 5 && computerMove) {
+                    }if (i == 5 && computerMove && (computerFighter.hp > 20)) {
                         $("#stats-computer").text(computerFighter.name + " is using their special ability!");
                         computerSpecial(3);
                         computerMove = false;
@@ -378,7 +378,7 @@ $("#special-move-ready").css("visibility", "hidden");
                         $("#stats-you").text("Toph attacked Aang with " + yourFighter.ap + " ap!")
                     } else {
                         $("#stats-you").text("Toph's attack missed!");
-                    }if (i == 5 && computerMove) {
+                    }if (i == 5 && computerMove && (computerFighter.hp > 20)) {
                         $("#stats-computer").text(computerFighter.name + " is using their special ability!");
                         computerSpecial(2);
                         computerMove = false;
@@ -401,7 +401,7 @@ $("#special-move-ready").css("visibility", "hidden");
                         $("#stats-you").text("Toph attacked Katara with " + yourFighter.ap + " ap!")
                     } else {
                         $("#stats-you").text("Toph's attack missed!");
-                    }if (i == 5 && computerMove) {
+                    }if (i == 5 && computerMove && (computerFighter.hp > 20)) {
                         $("#stats-computer").text(computerFighter.name + " is using their special ability!");
                         computerSpecial(3);
                         computerMove = false;
@@ -424,7 +424,7 @@ $("#special-move-ready").css("visibility", "hidden");
                         $("#stats-you").text("Toph attacked Zuko with " + yourFighter.ap + " ap!")
                     } else {
                         $("#stats-you").text("Toph's attack missed!");
-                    }if (i == 5 && computerMove) {
+                    }if (i == 5 && computerMove && (computerFighter.hp > 20)) {
                         $("#stats-computer").text(computerFighter.name + " is using their special ability!");
                         computerSpecial(4);
                         computerMove = false;
@@ -613,6 +613,12 @@ $("#special-move-ready").css("visibility", "hidden");
                 $(".yourHP").text("hp: " + yourFighter.hp);
                 $("#start-text").css("visibility", "visible");
                 $("#symbol-game").css("visibility", "hidden")
+                if(yourFighter.hp <= 0) {
+                    $("#yourFighter").fadeOut();
+                    $("#start-text").text("You have been defeated!");
+                    $("#restart").css("visibility", "visible");
+                    $("#special-move").css("visibility", "hidden");
+                }
             }
         })
         // special move animated gifs ===============================================================================
