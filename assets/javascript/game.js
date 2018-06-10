@@ -308,6 +308,7 @@ $("#special-move-ready").css("visibility", "hidden");
                     }if (i == 5 && computerMove) {
                         $("#stats-computer").text(computerFighter.name + " is using their special ability!");
                         computerSpecial(1);
+                        computerMove = false;
                     } 
                     if (i < 4) {
                     yourFighter.hp = (yourFighter.hp - (computerFighter.cap-5));
@@ -330,6 +331,7 @@ $("#special-move-ready").css("visibility", "hidden");
                     }if (i == 5 && computerMove) {
                         $("#stats-computer").text(computerFighter.name + " is using their special ability!");
                         computerSpecial(2);
+                        computerMove = false;
                     } 
                     if (i<4){
                     yourFighter.hp = (yourFighter.hp - (computerFighter.cap+3));
@@ -352,6 +354,7 @@ $("#special-move-ready").css("visibility", "hidden");
                     }if (i == 5 && computerMove) {
                         $("#stats-computer").text(computerFighter.name + " is using their special ability!");
                         computerSpecial(3);
+                        computerMove = false;
                     } 
                     if (i<4){
                     yourFighter.hp = (yourFighter.hp - computerFighter.cap);
