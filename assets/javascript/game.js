@@ -120,22 +120,22 @@ $("#special-move-ready").css("visibility", "hidden");
             leftBox = images[2];
            $("#left-box").html("<img src=" + leftBox + " />");
     //if Aang is selected second -------------------------------
-        } else if (x == 1 && firstSelection) {
+        } else if (x == 1 && firstSelection && gameStart == false) {
             computerFighter = fighter.airbender;
             rightBox = images[0];
            $("#right-box").html("<img src=" + rightBox + " />");
     //if Katara is selected second -------------------------------
-        } else if (x == 2 && firstSelection) {
+        } else if (x == 2 && firstSelection && gameStart == false) {
             computerFighter = fighter.waterbender;
             rightBox = images[3];
            $("#right-box").html("<img src=" + rightBox + " />");
     //if Toph is selected second -------------------------------
-        } else if (x == 3 && firstSelection) {
+        } else if (x == 3 && firstSelection && gameStart == false) {
             computerFighter = fighter.earthbender;
             rightBox = images[1];
            $("#right-box").html("<img src=" + rightBox + " />");
     //if Zuko is selected second -------------------------------
-        } else if (x == 4 && firstSelection) {
+        } else if (x == 4 && firstSelection && gameStart == false) {
             computerFighter = fighter.firebender;
             rightBox = images[2];
            $("#right-box").html("<img src=" + rightBox + " />");
