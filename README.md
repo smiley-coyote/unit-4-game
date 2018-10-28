@@ -18,6 +18,9 @@
 1. Once all opponents have been defeated, you win the game.
 1. Press the restart button to play again.
 
+#### Link to game:
+https://smiley-coyote.github.io/unit-4-game/
+
 #### This project was created by Nick Alex for a class assignment. The purpose of this game was to practice my newly learned skills by implementing them into a fun yet challenging project.
 
 ##### All pictures and music may be subject to copyright
